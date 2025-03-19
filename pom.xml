@@ -1,42 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0
+         https://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
+
     <groupId>ru.bizweaver</groupId>
     <artifactId>bizweaver</artifactId>
     <version>0.0.1-SNAPSHOT</version>
     <name>BizWeaver</name>
-    <description>Платформа для бесшовной интеграции бизнес-процессов (BPMN) в код. Автоматизируйте Camunda-процессы,
-        генерируйте делегаты и микросервисы, сохраняя бизнес-логику изолированной и безопасной.
-    </description>
-    <url/>
-    <licenses>
-        <license/>
-    </licenses>
-    <developers>
-        <developer/>
-    </developers>
-    <scm>
-        <connection/>
-        <developerConnection/>
-        <tag/>
-        <url/>
-    </scm>
+    <description>Платформа для бесшовной интеграции бизнес-процессов (BPMN) в код.</description>
 
     <properties>
         <java.version>21</java.version>
-        <spring-boot.version>3.1.5</spring-boot.version>
-        <maven.compiler.source>13</maven.compiler.source>
-        <maven.compiler.target>13</maven.compiler.target>
-<!--        <camunda.version>7.21.0</camunda.version>-->
-        <camunda.version>8.3.0</camunda.version>
-        <commons.io.version>2.14.0</commons.io.version>
-        <snakeyaml.version>2.2</snakeyaml.version>
-        <log4j.version>2.22.1</log4j.version>
+        <spring-boot.version>3.2.5</spring-boot.version>
+        <camunda.version>7.21.0</camunda.version>
+        <logbook.version>3.7.0</logbook.version>
+        <micrometer.version>1.12.4</micrometer.version>
     </properties>
 
     <dependencyManagement>
         <dependencies>
+            <!-- Spring Boot BOM -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-dependencies</artifactId>
@@ -44,109 +29,104 @@
                 <type>pom</type>
                 <scope>import</scope>
             </dependency>
+
+            <!-- Camunda BOM -->
+            <dependency>
+                <groupId>org.camunda.bpm</groupId>
+                <artifactId>camunda-bom</artifactId>
+                <version>${camunda.version}</version>
+                <scope>import</scope>
+                <type>pom</type>
+            </dependency>
         </dependencies>
     </dependencyManagement>
 
     <dependencies>
-
-        <!--Camunda BPM Spring Boot Starter. Интеграция с Camunda для исполнения BPMN-процессов.-->
+        <!-- Camunda -->
         <dependency>
-            <groupId>io.camunda</groupId>
-            <artifactId>spring-zeebe-starter</artifactId>
-            <version>${camunda.version}</version>
+            <groupId>org.camunda.bpm.springboot</groupId>
+            <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>org.camunda.bpm.springboot</groupId>-->
-<!--            <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>-->
-<!--            <version>${camunda.version}</version>-->
-<!--            <exclusions>-->
-<!--                <exclusion>-->
-<!--                    <groupId>commons-io</groupId>-->
-<!--                    <artifactId>commons-io</artifactId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.yaml</groupId>-->
-<!--                    <artifactId>snakeyaml</artifactId>-->
-<!--                </exclusion>-->
-<!--                <exclusion>-->
-<!--                    <groupId>org.apache.logging.log4j</groupId>-->
-<!--                    <artifactId>log4j-core</artifactId>-->
-<!--                </exclusion>-->
-<!--            </exclusions>-->
-<!--        </dependency>-->
-        <!-- Безопасные версии библиотек для решения уязвимости в camunda -->
-<!--        <dependency>-->
-<!--            <groupId>commons-io</groupId>-->
-<!--            <artifactId>commons-io</artifactId>-->
-<!--            <version>${commons.io.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.yaml</groupId>-->
-<!--            <artifactId>snakeyaml</artifactId>-->
-<!--            <version>${snakeyaml.version}</version>-->
-<!--        </dependency>-->
-<!--        <dependency>-->
-<!--            <groupId>org.apache.logging.log4j</groupId>-->
-<!--            <artifactId>log4j-core</artifactId>-->
-<!--            <version>${log4j.version}</version>-->
-<!--        </dependency>-->
 
-        <!--Spring Web. REST API для взаимодействия с процессами и внешними системами.-->
+        <!-- Spring Boot Starters -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
 
-        <!--Spring Data JPA. Работа с сущностями процессов и аудит-логами.-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
 
-        <!--Lombok. Упрощение кода через автоматическую генерацию геттеров/сеттеров.-->
-<!--        <dependency>-->
-<!--            <groupId>org.projectlombok</groupId>-->
-<!--            <artifactId>lombok</artifactId>-->
-<!--            <optional>true</optional>-->
-<!--        </dependency>-->
-
-        <!--Spring Boot Actuator. Мониторинг метрик процессов и здоровья системы.-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-actuator</artifactId>
         </dependency>
 
-        <!--H2 Database. Встроенная БД для разработки и тестирования.-->
+        <!-- Utilities -->
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>commons-io</groupId>
+            <artifactId>commons-io</artifactId>
+            <version>2.14.0</version>
+        </dependency>
+
+        <!-- Database -->
         <dependency>
             <groupId>com.h2database</groupId>
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
 
-        <!--MapStruct. Генерация мапперов для DTO и сущностей.-->
+        <!-- Observability -->
         <dependency>
-            <groupId>org.mapstruct</groupId>
-            <artifactId>mapstruct</artifactId>
-            <version>1.5.5.Final</version>
+            <groupId>org.zalando</groupId>
+            <artifactId>logbook-spring-boot-starter</artifactId>
+            <version>${logbook.version}</version>
         </dependency>
 
-        <!--Spring Security. Защита API и процессов с ролевой моделью. -->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.boot</groupId>-->
-<!--            <artifactId>spring-boot-starter-security</artifactId>-->
-<!--        </dependency>-->
-
-        <!--Spring for Apache Kafka. Асинхронная обработка событий процессов.-->
-<!--        <dependency>-->
-<!--            <groupId>org.springframework.kafka</groupId>-->
-<!--            <artifactId>spring-kafka</artifactId>-->
-<!--        </dependency>-->
-
+        <!-- Logbook для Spring WebFlux -->
+        <dependency>
+            <groupId>org.zalando</groupId>
+            <artifactId>logbook-spring-webflux</artifactId>
+            <version>${logbook.version}</version>
+        </dependency>
 
         <dependency>
+            <groupId>io.micrometer</groupId>
+            <artifactId>micrometer-core</artifactId>
+            <version>${micrometer.version}</version>
+        </dependency>
+
+        <!-- Реактивное программирование -->
+        <dependency>
             <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-starter-test</artifactId>
-            <scope>test</scope>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+
+        <!-- Camunda -->
+        <dependency>
+            <groupId>org.camunda.bpm.springboot</groupId>
+            <artifactId>camunda-bpm-spring-boot-starter-webapp</artifactId>
+        </dependency>
+
+        <!-- Spring Boot Starters -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+
+        <!-- Utilities -->
+        <dependency>
+            <groupId>org.springframework.retry</groupId>
+            <artifactId>spring-retry</artifactId>
+            <optional>true</optional>
         </dependency>
     </dependencies>
 
@@ -157,17 +137,22 @@
                 <artifactId>spring-boot-maven-plugin</artifactId>
                 <version>${spring-boot.version}</version>
                 <configuration>
-                    <layout>ZIP</layout>
+                    <excludes>
+                        <exclude>
+                            <groupId>org.projectlombok</groupId>
+                            <artifactId>lombok</artifactId>
+                        </exclude>
+                    </excludes>
                 </configuration>
-                <executions>
-                    <execution>
-                        <goals>
-                            <goal>repackage</goal>
-                        </goals>
-                    </execution>
-                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>8</source>
+                    <target>8</target>
+                </configuration>
             </plugin>
         </plugins>
     </build>
-
 </project>

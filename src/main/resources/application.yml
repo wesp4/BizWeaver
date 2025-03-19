@@ -7,12 +7,15 @@ spring:
       ddl-auto: update
     show-sql: true
 
+server:
+  port: 8081
+
 camunda:
   bpm:
     admin-user:
-      id: demo
-      password: demo
-      firstName: Demo
+      id: admin
+      password: admin
+      firstName: Admin
     metrics:
       enabled: true
     filter:
