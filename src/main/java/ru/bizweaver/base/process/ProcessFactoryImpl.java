@@ -11,6 +11,7 @@ import ru.bizweaver.base.variable.CamundaVariable;
 
 import org.camunda.bpm.engine.RuntimeService;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.function.BiConsumer;
 
@@ -26,6 +27,13 @@ public class ProcessFactoryImpl implements ProcessFactory {
         this.runtimeService = runtimeService;
         this.metricFactory = metricFactory;
         this.activeStories = activeStories;
+    }
+
+    public ProcessFactoryImpl(RuntimeService runtimeService,
+                              MetricFactory metricFactory) {
+        this.runtimeService = runtimeService;
+        this.metricFactory = metricFactory;
+        this.activeStories = new ArrayList<>();
     }
 
     @Override

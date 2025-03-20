@@ -29,19 +29,7 @@ public abstract class AbstractEventContext implements Serializable {
     protected String event;
 
     /**
-     * Ключ действия
-     */
-    @Deprecated
-    protected String action;
-
-    /**
      * Контекст {@link org.slf4j.MDC}.
      */
     protected MdcContext mdcContext;
-
-    /**
-     * Бизнес-ключ вызываемого процесса
-     */
-    @Deprecated
-    protected String callbackBusinessKey;
 }
