@@ -6,11 +6,7 @@ import ru.bizweaver.base.variable.CamundaVariableImp;
 
 import java.util.concurrent.ConcurrentLinkedQueue;
 
-/**
- * Класс переменных Camunda для хранения очереди последовательных процессов.
- *
- * @author NTB Team
- */
+
 public class AsyncProcessesQueueVariable
         extends
     CamundaVariableImp<ConcurrentLinkedQueue<AsyncProcess<? extends AbstractEventContext>>> {

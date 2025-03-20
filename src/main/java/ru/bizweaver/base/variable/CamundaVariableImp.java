@@ -10,11 +10,6 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 
 import java.util.Optional;
 
-/**
- * Базовый класс для создания переменных Camunda.
- *
- * @author NTB Team
- */
 @Getter
 @RequiredArgsConstructor
 public class CamundaVariableImp<T> implements CamundaVariable<T> {

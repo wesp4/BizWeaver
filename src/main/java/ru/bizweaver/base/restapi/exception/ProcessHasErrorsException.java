@@ -6,11 +6,7 @@ import ru.bizweaver.base.restapi.model.ErrorContainer;
 
 import java.util.List;
 
-/**
- * Исключение, связанное с некорректным бизнес ключем полученным в запросе.
- *
- * @author NTB Team
- */
+
 @Getter
 public class ProcessHasErrorsException extends RuntimeException {
     private final HttpStatus status;

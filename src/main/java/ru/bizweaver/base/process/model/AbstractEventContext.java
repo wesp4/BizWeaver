@@ -7,11 +7,7 @@ import lombok.NoArgsConstructor;
 import java.io.Serial;
 import java.io.Serializable;
 
-/**
- * Данные полученные при обработке запроса или внутреннем событии процесса
- *
- * @author NTB Team
- */
+
 @Data
 @NoArgsConstructor
 @AllArgsConstructor

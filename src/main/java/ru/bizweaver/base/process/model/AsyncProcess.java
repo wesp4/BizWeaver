@@ -6,11 +6,7 @@ import lombok.Data;
 import java.io.Serial;
 import java.io.Serializable;
 
-/**
- * Данные для запуска асинхроннго процесса.
- *
- * @author NTB Team
- */
+
 @Data
 @AllArgsConstructor
 public class AsyncProcess<T extends AbstractEventContext> implements Serializable {

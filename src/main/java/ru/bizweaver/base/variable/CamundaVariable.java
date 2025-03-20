@@ -6,11 +6,7 @@ import org.camunda.bpm.engine.delegate.DelegateExecution;
 
 import java.util.Optional;
 
-/**
- * Переменная Camunda.
- *
- * @author NTB Team
- */
+
 public interface CamundaVariable<T> {
     /**
      * Метод получает хранимое значение переменной
