@@ -20,3 +20,50 @@ camunda:
       enabled: true
     filter:
       create: All tasks
+
+processes:
+  master-controller: MASTER_CONTROLLER
+  context:
+    check-interval: "PT5M"
+
+metrics:
+  not-defined-message: "%s must be defined"
+  default-group: "default"
+  group-metrics:
+    default:
+      pattern: "%s%s"
+    masterController:
+      prefix: "master_controller"
+      pattern: "%s_%s"
+
+rest-api:
+  rest-api-settings:
+    default:
+      responseTimeoutInMilliSeconds: 20000
+      numberOfAttepts: 10
+      waitingTime: 1000
+
+web-client-factory:
+  points:
+    entityDateBase:
+      uri: ${DATE_BASE_URL:http://localhost:8080}
+      auth: none
+
+rest-integration:
+  default-settings:
+    initial-interval: 500
+    retries: 3
+  services:
+    datebase:
+      web-client: entityDateBase
+      headers:
+        Test-header: "My-header"
+        path: "/v1"
+      methods:
+        get:
+          path: "/get/{id}"
+          method: "GET"
+          metrics:
+            start: "bd_start"
+            success: "bd_success"
+            failure: "bd_failure"

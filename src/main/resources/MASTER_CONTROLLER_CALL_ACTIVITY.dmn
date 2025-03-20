@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<definitions xmlns="https://www.omg.org/spec/DMN/20191111/MODEL/" xmlns:dmndi="https://www.omg.org/spec/DMN/20191111/DMNDI/" xmlns:dc="http://www.omg.org/spec/DMN/20180521/DC/" xmlns:modeler="http://camunda.org/schema/modeler/1.0" xmlns:camunda="http://camunda.org/schema/1.0/dmn" id="MASTER_CONTROLLER_CALL_ACTIVITY_FILE" name="DRD" namespace="http://camunda.org/schema/1.0/dmn" exporter="Camunda Modeler" exporterVersion="5.16.0" modeler:executionPlatform="Camunda Platform" modeler:executionPlatformVersion="7.20.0">
+  <decision id="event_key_selector" name="event_key_selector" camunda:historyTimeToLive="0">
+    <decisionTable id="DecisionTable_08waskn">
+      <input id="Input_1" label="EVENT_NAME">
+        <inputExpression id="InputExpression_1" typeRef="string">
+          <text>EVENT_NAME</text>
+        </inputExpression>
+      </input>
+      <output id="Output_1" label="CALL_ACTIVITY" name="CALL_ACTIVITY" typeRef="string" />
+      <rule id="DecisionRule_16hfu4s">
+        <inputEntry id="UnaryTests_06gbejx">
+          <text>"EVENT_1"</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_1e1uggz">
+          <text>"LANE_1"</text>
+        </outputEntry>
+      </rule>
+      <rule id="DecisionRule_0oti7bz">
+        <inputEntry id="UnaryTests_01fclwe">
+          <text>-</text>
+        </inputEntry>
+        <outputEntry id="LiteralExpression_0v4r625">
+          <text>"DEFAULT"</text>
+        </outputEntry>
+      </rule>
+    </decisionTable>
+  </decision>
+  <dmndi:DMNDI>
+    <dmndi:DMNDiagram>
+      <dmndi:DMNShape dmnElementRef="event_key_selector">
+        <dc:Bounds height="80" width="180" x="160" y="100" />
+      </dmndi:DMNShape>
+    </dmndi:DMNDiagram>
+  </dmndi:DMNDI>
+</definitions>

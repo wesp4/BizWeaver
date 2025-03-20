@@ -1,4 +1,4 @@
-package ru.bizweaver.core;
+package ru.bizweaver.core.excamad;
 
 
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
